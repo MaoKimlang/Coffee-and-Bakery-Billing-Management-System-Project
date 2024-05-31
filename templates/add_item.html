@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    /* Styles for Add New Item page */
+    .add-item-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f1f6f9;
+        border-radius: 5px;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .add-item-container h2 {
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .add-item-container label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .add-item-container input[type="text"],
+    .add-item-container select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+    }
+
+    .add-item-container input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        border-radius: 3px;
+        border: none;
+        background-color: #3d89da;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .add-item-container input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    .add-item-container table {
+        width: 100%;
+    }
+
+    .add-item-container td {
+        padding: 8px;
+    }
+
+    .add-item-container td:nth-child(odd) {
+        text-align: right;
+    }
+
+    .add-item-container td:nth-child(even) {
+        text-align: left;
+    }
+</style>
+
+<div class="add-item-container">
+    <h2>Add New Item</h2>
+    <form method="POST">
+        <table>
+            <tr>
+                <td><label for="itemID">Item ID:</label></td>
+                <td><input type="text" id="itemID" name="itemID" required></td>
+            </tr>
+            <tr>
+                <td><label for="itemName">Item Name:</label></td>
+                <td><input type="text" id="itemName" name="itemName" required></td>
+            </tr>
+            <tr>
+                <td><label for="category">Category:</label></td>
+                <td>
+                    <select id="category" name="category" required>
+                        <option value="hot drink">Hot Drink</option>
+                        <option value="iced drink">Iced Drink</option>
+                        <option value="frapped drink">Frapped Drink</option>
+                        <option value="cake">Cake</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="sizeOption">Size Option:</label></td>
+                <td>
+                    <select id="sizeOption" name="sizeOption">
+                        <option value="S">Small</option>
+                        <option value="L">Large</option>
+                        <option value="">None</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="price">Price:</label></td>
+                <td><input type="text" id="price" name="price" required></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;"><input type="submit" value="Add Item"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+{% endblock %}

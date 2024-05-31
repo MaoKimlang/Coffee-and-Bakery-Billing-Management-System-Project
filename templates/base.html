@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Coffee and Cake Billing Management System</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header class="site-header">
+    <h1>Coffee and Cake Billing Management System</h1>
+    <nav class="main-nav">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('list_items') }}">View Items</a>
+        <a href="{{ url_for('add_item') }}">Add Items</a>
+        <a href="{{ url_for('list_orders') }}">View Orders</a>
+        <a href="{{ url_for('add_order') }}">Create Orders</a>
+    </nav>
+</header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 Coffee and Cake Billing System</p>
+    </footer>
+</body>
+</html>

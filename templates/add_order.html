@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    /* Styles for Create New Order page */
+    .create-order-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f1f6f9;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .create-order-container h2 {
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .create-order-container form {
+        margin-top: 20px;
+    }
+
+    .create-order-container label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .create-order-container select,
+    .create-order-container input[type="text"],
+    .create-order-container input[type="number"],
+    .create-order-container button {
+        margin-bottom: 10px;
+    }
+
+    .create-order-container .items-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .create-order-container .items-table th,
+    .create-order-container .items-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .create-order-container .add-item-btn,
+    .create-order-container .remove-item-btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .create-order-container .add-item-btn:hover,
+    .create-order-container .remove-item-btn:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="create-order-container">
+    <h2>Create New Order</h2>
+    <form method="POST">
+        <label for="cashierID">Cashier:</label><br>
+        <select id="cashierID" name="cashierID" required>
+            {% for cashier in cashiers %}
+            <option value="{{ cashier.cashierID }}">{{ cashier.cashierName }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <h3>Items</h3>
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Discount</th>
+                    <th>Quantity</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="items-container">
+                <tr class="item-row">
+                    <td>
+                        <select name="itemID" required>
+                            {% for item in items %}
+                            <option value="{{ item.itemID }}">{{ item.itemName }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" name="discount" value="0" required>
+                    </td>
+                    <td>
+                        <input type="number" name="quantity" value="1" required>
+                    </td>
+                    <td>
+                        <button type="button" class="remove-item-btn" onclick="removeItemRow(this)">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button type="button" class="add-item-btn" onclick="addItemRow()">Add Another Item</button><br><br>
+        <input type="submit" value="Create Order">
+    </form>
+</div>
+
+<script>
+    function addItemRow() {
+        var itemsContainer = document.getElementById('items-container');
+        var newItemRow = document.createElement('tr');
+        newItemRow.className = 'item-row';
+        newItemRow.innerHTML = `
+            <td>
+                <select name="itemID" required>
+                    {% for item in items %}
+                    <option value="{{ item.itemID }}">{{ item.itemName }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+            <td>
+                <input type="text" name="discount" value="0" required>
+            </td>
+            <td>
+                <input type="number" name="quantity" value="1" required>
+            </td>
+            <td>
+                <button type="button" class="remove-item-btn" onclick="removeItemRow(this)">Remove</button>
+            </td>
+        `;
+        itemsContainer.appendChild(newItemRow);
+    }
+
+    function removeItemRow(button) {
+        var row = button.parentElement.parentElement;
+        row.remove();
+    }
+</script>
+{% endblock %}
