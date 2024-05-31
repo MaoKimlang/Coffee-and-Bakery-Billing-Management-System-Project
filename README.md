@@ -1,3 +1,5 @@
+Coffee and Bakery Billing Management System
+
 The project is inspired by my database course, 
 I'm the coffee lover who wants to create a coffee and bakery management system.
 The system you want to build is focused on the cashier functionality, 
